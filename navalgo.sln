@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "navalgo.view", "navalgo.view.csproj", "{C2A539A5-6B3C-45F6-A23A-03FF6E0BDDE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "navalgo.model", "navalgo.model\navalgo.model.csproj", "{4CF69D6D-A6F2-4544-824B-1702FC67625E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "navalgo.model.test", "navalgo.model.test\navalgo.model.test.csproj", "{CE54C1DD-BA16-4364-9248-62A7B3CE588B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+		AppStore|x86 = AppStore|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4CF69D6D-A6F2-4544-824B-1702FC67625E}.AppStore|x86.ActiveCfg = AppStore|x86
+		{4CF69D6D-A6F2-4544-824B-1702FC67625E}.AppStore|x86.Build.0 = AppStore|x86
+		{4CF69D6D-A6F2-4544-824B-1702FC67625E}.Debug|x86.ActiveCfg = Debug|x86
+		{4CF69D6D-A6F2-4544-824B-1702FC67625E}.Debug|x86.Build.0 = Debug|x86
+		{4CF69D6D-A6F2-4544-824B-1702FC67625E}.Release|x86.ActiveCfg = Release|x86
+		{4CF69D6D-A6F2-4544-824B-1702FC67625E}.Release|x86.Build.0 = Release|x86
+		{C2A539A5-6B3C-45F6-A23A-03FF6E0BDDE8}.AppStore|x86.ActiveCfg = AppStore|x86
+		{C2A539A5-6B3C-45F6-A23A-03FF6E0BDDE8}.AppStore|x86.Build.0 = AppStore|x86
+		{C2A539A5-6B3C-45F6-A23A-03FF6E0BDDE8}.Debug|x86.ActiveCfg = Debug|x86
+		{C2A539A5-6B3C-45F6-A23A-03FF6E0BDDE8}.Debug|x86.Build.0 = Debug|x86
+		{C2A539A5-6B3C-45F6-A23A-03FF6E0BDDE8}.Release|x86.ActiveCfg = Release|x86
+		{C2A539A5-6B3C-45F6-A23A-03FF6E0BDDE8}.Release|x86.Build.0 = Release|x86
+		{CE54C1DD-BA16-4364-9248-62A7B3CE588B}.AppStore|x86.ActiveCfg = Release|Any CPU
+		{CE54C1DD-BA16-4364-9248-62A7B3CE588B}.AppStore|x86.Build.0 = Release|Any CPU
+		{CE54C1DD-BA16-4364-9248-62A7B3CE588B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CE54C1DD-BA16-4364-9248-62A7B3CE588B}.Debug|x86.Build.0 = Debug|Any CPU
+		{CE54C1DD-BA16-4364-9248-62A7B3CE588B}.Release|x86.ActiveCfg = Release|Any CPU
+		{CE54C1DD-BA16-4364-9248-62A7B3CE588B}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = navalgo.view.csproj
+	EndGlobalSection
+EndGlobal
