@@ -33,4 +33,13 @@
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="TestCasillero.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\navalgo.model\navalgo.model.csproj">
+      <Project>{4CF69D6D-A6F2-4544-824B-1702FC67625E}</Project>
+      <Name>navalgo.model</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
