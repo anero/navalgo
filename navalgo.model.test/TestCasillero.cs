@@ -39,6 +39,8 @@ namespace navalgo.model.test
 		{
 			public Posicion Posicion { get; set; }
 
+			public Direccion Direccion { get; set; }
+
 			public void DaniarConDisparoConvencional()
 			{
 			}

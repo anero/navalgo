@@ -7,11 +7,14 @@ namespace navalgo.model.test
 	public class TestBuque
 	{
 		[Test]
-		public void DeberiaCrearLasPartesAlInicializar ()
+		public void DeberiaInicializarCorrectamenteLosAtributos ()
 		{
-			var buque = new Buque (new Posicion ('a', 1));
+			var posicion = new Posicion ('a', 1);
+			var buque = new Buque (posicion, Direccion.Oeste);
 
 			Assert.AreEqual (4, buque.Tamanio);
+			Assert.AreEqual (posicion, buque.Posicion);
+			Assert.AreEqual (Direccion.Oeste, buque.Direccion);
 			Assert.IsFalse (buque.Destruida);
 			Assert.AreEqual (4, buque.PartesSanas);
 			Assert.AreEqual (0, buque.PartesDestruidas);
@@ -20,7 +23,7 @@ namespace navalgo.model.test
 		[Test]
 		public void UnDisparoConvencionalDeberiaDestruirBuque()
 		{
-			var buque = new Buque (new Posicion ('a', 1));
+			var buque = new Buque (new Posicion ('a', 1), Direccion.Norte);
 
 			buque.DaniarConDisparoConvencional ();
 
@@ -32,7 +35,7 @@ namespace navalgo.model.test
 		[Test]
 		public void UnaMinaDeberiaDestruirBuque()
 		{
-			var buque = new Buque (new Posicion ('a', 1));
+			var buque = new Buque (new Posicion ('a', 1), Direccion.Norte);
 
 			buque.DaniarConMina ();
 

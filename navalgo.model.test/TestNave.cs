@@ -9,7 +9,7 @@ namespace navalgo.model.test
 		[Test]
 		public void DeberiaSetearTamanioAlConstruir ()
 		{
-			var mockNave = new MockNave (10, new Posicion ('a', 1));
+			var mockNave = new MockNave (10, new Posicion ('a', 1), Direccion.Norte);
 
 			Assert.AreEqual (10, mockNave.Tamanio);
 		}
@@ -18,29 +18,37 @@ namespace navalgo.model.test
 		public void DeberiaSetearPosicionAlConstruir()
 		{
 			var posicion = new Posicion ('a', 1);
-			var mockNave = new MockNave (1, posicion);
+			var mockNave = new MockNave (1, posicion, Direccion.Norte);
 
 			Assert.IsTrue (posicion.Equals(mockNave.Posicion));
+		}
+
+		[Test]
+		public void DeberiaSetearDireccionAlConstruir()
+		{
+			var mockNave = new MockNave (1, new Posicion ('a', 1), Direccion.Sur);
+
+			Assert.AreEqual(Direccion.Sur, mockNave.Direccion);
 		}
 
 		[Test]
 		[ExpectedException(typeof(TamanioInvalidoDeNaveException))]
 		public void DeberiaLanzarExcepcionAlSetearTamanioInvalido()
 		{
-			new MockNave (0, new Posicion ('a', 1));
+			new MockNave (0, new Posicion ('a', 1), Direccion.Norte);
 		}
 
 		[Test]
 		[ExpectedException(typeof(ArgumentNullException))]
 		public void DeberiaLanzarExcepcionAlSetearPosicionInvalida()
 		{
-			new MockNave (6, null);
+			new MockNave (6, null, Direccion.Norte);
 		}
 
 		[Test]
 		public void DisparoDeberiaDaniarNave()
 		{
-			var mockNave = new MockNave (3, new Posicion ('a', 1));
+			var mockNave = new MockNave (3, new Posicion ('a', 1), Direccion.Norte);
 
 			Assert.AreEqual (3, mockNave.PartesSanas);
 			Assert.AreEqual (0, mockNave.PartesDestruidas);
@@ -54,7 +62,7 @@ namespace navalgo.model.test
 		[Test]
 		public void MinaDeberiaDaniarNave()
 		{
-			var mockNave = new MockNave (3, new Posicion ('a', 1));
+			var mockNave = new MockNave (3, new Posicion ('a', 1), Direccion.Norte);
 
 			Assert.AreEqual (3, mockNave.PartesSanas);
 			Assert.AreEqual (0, mockNave.PartesDestruidas);
@@ -69,7 +77,7 @@ namespace navalgo.model.test
 		[ExpectedException(typeof(NaveYaDestruidaException))]
 		public void DaniarSobreNaveDestruidaDeberiaArrojarExcepcion()
 		{
-			var mockNave = new MockNave (1, new Posicion ('a', 1));
+			var mockNave = new MockNave (1, new Posicion ('a', 1), Direccion.Norte);
 			mockNave.DaniarConDisparoConvencional ();
 
 			mockNave.DaniarConDisparoConvencional ();
@@ -77,8 +85,8 @@ namespace navalgo.model.test
 
 		class MockNave : Nave
 		{
-			public MockNave(int tamanio, Posicion posicion)
-				: base(tamanio, posicion)
+			public MockNave(int tamanio, Posicion posicion, Direccion direccion)
+				: base(tamanio, posicion, direccion)
 			{
 			}
 		}

@@ -6,8 +6,8 @@ namespace navalgo.model
 	{
 		private const int TamanioInicial = 3;
 
-		public Destructor (Posicion posicion)
-			: base(TamanioInicial, posicion)
+		public Destructor (Posicion posicion, Direccion direccion)
+			: base(TamanioInicial, posicion, direccion)
 		{
 		}
 

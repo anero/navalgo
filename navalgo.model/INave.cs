@@ -6,6 +6,8 @@ namespace navalgo.model
 	{
 		Posicion Posicion { get; }
 
+		Direccion Direccion { get; }
+
 		void DaniarConDisparoConvencional();
 
 		void DaniarConMina();

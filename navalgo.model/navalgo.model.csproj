@@ -90,5 +90,6 @@
     <Compile Include="Posicion.cs" />
     <Compile Include="Excepciones\ColumnaInvalidaException.cs" />
     <Compile Include="Excepciones\FilaInvalidaException.cs" />
+    <Compile Include="Direccion.cs" />
   </ItemGroup>
 </Project>
