@@ -4,6 +4,8 @@ namespace navalgo.model
 {
 	public class Casillero
 	{
+		private INave nave;
+
 		public char Columna 
 		{
 			get;
@@ -14,6 +16,23 @@ namespace navalgo.model
 		{
 			get;
 			private set;
+		}
+
+		public INave Nave 
+		{
+			get 
+			{
+				return this.nave;
+			}
+
+			set 
+			{
+				if (value == null) {
+					throw new NaveInvalidaException ();
+				}
+
+				this.nave = value;
+			}
 		}
 
 		public Casillero (char columna, int fila)
