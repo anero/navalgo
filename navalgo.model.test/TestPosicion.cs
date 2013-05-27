@@ -72,6 +72,88 @@ namespace navalgo.model.test
 
 			Assert.IsFalse (posicion1.Equals(posicion2));
 		}
+
+		[Test]
+		public void DeberiaCalcularSiguientePosicionHaciaNorte()
+		{
+			var posicion = new Posicion ('d', 5);
+
+			Assert.AreEqual (new Posicion('d', 4), posicion.ObtenerSiguientePosicion (Direccion.Norte));
+		}
+
+		[Test]
+		public void DeberiaCalcularSiguientePosicionHaciaEste()
+		{
+			var posicion = new Posicion ('d', 5);
+
+			Assert.AreEqual (new Posicion('e', 5), posicion.ObtenerSiguientePosicion (Direccion.Este));
+		}
+
+		[Test]
+		public void DeberiaCalcularSiguientePosicionHaciaSur()
+		{
+			var posicion = new Posicion ('d', 5);
+
+			Assert.AreEqual (new Posicion('d', 6), posicion.ObtenerSiguientePosicion (Direccion.Sur));
+		}
+
+		[Test]
+		public void DeberiaCalcularSiguientePosicionHaciaOeste()
+		{
+			var posicion = new Posicion ('d', 5);
+
+			Assert.AreEqual (new Posicion('c', 5), posicion.ObtenerSiguientePosicion (Direccion.Oeste));
+		}
+
+		[Test]
+		public void DeberiaCalcularSiguientePosicionHaciaNorEste()
+		{
+			var posicion = new Posicion ('d', 5);
+
+			Assert.AreEqual (new Posicion('e', 4), posicion.ObtenerSiguientePosicion (Direccion.NorEste));
+		}
+
+		[Test]
+		public void DeberiaCalcularSiguientePosicionHaciaSurEste()
+		{
+			var posicion = new Posicion ('d', 5);
+
+			Assert.AreEqual (new Posicion('e', 6), posicion.ObtenerSiguientePosicion (Direccion.SurEste));
+		}
+
+		[Test]
+		public void DeberiaCalcularSiguientePosicionHaciaSurOeste()
+		{
+			var posicion = new Posicion ('d', 5);
+
+			Assert.AreEqual (new Posicion('c', 6), posicion.ObtenerSiguientePosicion (Direccion.SurOeste));
+		}
+
+		[Test]
+		public void DeberiaCalcularSiguientePosicionHaciaNorOeste()
+		{
+			var posicion = new Posicion ('d', 5);
+
+			Assert.AreEqual (new Posicion('c', 4), posicion.ObtenerSiguientePosicion (Direccion.NorOeste));
+		}
+
+		[Test]
+		[ExpectedException(typeof(ColumnaInvalidaException))]
+		public void DeberiaLanzarExcepcionAlObtenerSiguientePosicionDeUltimaColumna()
+		{
+			var posicion = new Posicion ('z', 5);
+
+			posicion.ObtenerSiguientePosicion (Direccion.Este);
+		}
+
+		[Test]
+		[ExpectedException(typeof(ColumnaInvalidaException))]
+		public void DeberiaLanzarExcepcionAlObtenerSiguientePosicionDePrimeraColumna()
+		{
+			var posicion = new Posicion ('a', 5);
+
+			posicion.ObtenerSiguientePosicion (Direccion.Oeste);
+		}
 	}
 }
 
