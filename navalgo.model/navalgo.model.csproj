@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Excepciones\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -74,5 +75,11 @@
   <Import Project="$(MSBuildExtensionsPath)\Mono\MonoMac\v0.0\Mono.MonoMac.targets" />
   <ItemGroup>
     <Compile Include="Casillero.cs" />
+    <Compile Include="INave.cs" />
+    <Compile Include="Excepciones\NaveInvalidaException.cs" />
+    <Compile Include="Nave.cs" />
+    <Compile Include="Excepciones\TamanioInvalidoDeNave.cs" />
+    <Compile Include="Lancha.cs" />
+    <Compile Include="IDisparo.cs" />
   </ItemGroup>
 </Project>

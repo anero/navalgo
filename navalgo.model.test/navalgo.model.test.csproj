@@ -35,6 +35,9 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="TestCasillero.cs" />
+    <Compile Include="TestTablero.cs" />
+    <Compile Include="TestNave.cs" />
+    <Compile Include="TestLancha.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\navalgo.model\navalgo.model.csproj">
