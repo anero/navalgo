@@ -23,9 +23,10 @@ namespace navalgo.model.test
 		[Test]
 		public void UnDisparoConvencionalDeberiaDestruirBuque()
 		{
-			var buque = new Buque (new Posicion ('a', 1), Direccion.Norte);
+			var posicion = new Posicion ('a', 1);
+			var buque = new Buque (posicion, Direccion.Norte);
 
-			buque.DaniarConDisparoConvencional ();
+			buque.DaniarConDisparoConvencional (posicion);
 
 			Assert.IsTrue (buque.Destruida);
 			Assert.AreEqual (4, buque.PartesDestruidas);
@@ -35,9 +36,10 @@ namespace navalgo.model.test
 		[Test]
 		public void UnaMinaDeberiaDestruirBuque()
 		{
-			var buque = new Buque (new Posicion ('a', 1), Direccion.Norte);
+			var posicion = new Posicion ('a', 1);
+			var buque = new Buque (posicion, Direccion.Norte);
 
-			buque.DaniarConMina ();
+			buque.DaniarConMina (new[] { posicion });
 
 			Assert.IsTrue (buque.Destruida);
 			Assert.AreEqual (4, buque.PartesDestruidas);

@@ -2,15 +2,17 @@ using System;
 
 namespace navalgo.model
 {
-	public class DisparoConvencional : IDisparo
+	public class DisparoConvencional : Disparo
 	{
-		public DisparoConvencional ()
+		public DisparoConvencional (Posicion posicionObjetivo)
+			: base(posicionObjetivo)
 		{
+			
 		}
 
-		public void ImpactarNave(INave nave)
+		public override void ImpactarNave(INave nave)
 		{
-			nave.DaniarConDisparoConvencional ();
+			nave.DaniarConDisparoConvencional (this.PosicionObjetivo);
 		}
 	}
 }

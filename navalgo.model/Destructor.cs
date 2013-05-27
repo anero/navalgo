@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace navalgo.model
 {
@@ -11,7 +12,7 @@ namespace navalgo.model
 		{
 		}
 
-		public override void DaniarConMina ()
+		public override void DaniarConMina (IEnumerable<Posicion> posicionesImpactadas)
 		{
 			// Las minas no danian a los destructores
 		}

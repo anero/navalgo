@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
 
 namespace navalgo.model
 {
-	public abstract class Nave
+	public abstract class Nave : INave
 	{
 		public int Tamanio {
 			get;
@@ -52,12 +53,12 @@ namespace navalgo.model
 			this.PartesDestruidas = 0;
 		}
 
-		public virtual void DaniarConDisparoConvencional()
+		public virtual void DaniarConDisparoConvencional(Posicion posicionImpactada)
 		{
 			this.DestruirParte ();
 		}
 
-		public virtual void DaniarConMina()
+		public virtual void DaniarConMina(IEnumerable<Posicion> posicionesImpactadas)
 		{
 			this.DestruirParte ();
 		}

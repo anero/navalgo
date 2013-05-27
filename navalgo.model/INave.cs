@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace navalgo.model
 {
@@ -8,9 +9,9 @@ namespace navalgo.model
 
 		Direccion Direccion { get; }
 
-		void DaniarConDisparoConvencional();
+		void DaniarConDisparoConvencional(Posicion posicionImpactada);
 
-		void DaniarConMina();
+		void DaniarConMina(IEnumerable<Posicion> posicionesImpactadas);
 	}
 }
 

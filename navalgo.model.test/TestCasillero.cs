@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace navalgo.model.test
 {
@@ -41,12 +42,14 @@ namespace navalgo.model.test
 
 			public Direccion Direccion { get; set; }
 
-			public void DaniarConDisparoConvencional()
+			public void DaniarConDisparoConvencional(Posicion posicionImpactada)
 			{
+				throw new NotImplementedException ();
 			}
 
-			public void DaniarConMina()
+			public void DaniarConMina(IEnumerable<Posicion> posicionesImpactadas)
 			{
+				throw new NotImplementedException ();
 			}
 		}
 	}

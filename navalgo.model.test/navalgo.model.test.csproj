@@ -42,6 +42,8 @@
     <Compile Include="TestBuque.cs" />
     <Compile Include="TestRompehielos.cs" />
     <Compile Include="TestPosicion.cs" />
+    <Compile Include="TestDisparo.cs" />
+    <Compile Include="TestDisparoConvencional.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\navalgo.model\navalgo.model.csproj">

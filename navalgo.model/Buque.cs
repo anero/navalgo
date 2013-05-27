@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace navalgo.model
 {
@@ -11,12 +12,12 @@ namespace navalgo.model
 		{
 		}
 
-		public override void DaniarConDisparoConvencional ()
+		public override void DaniarConDisparoConvencional (Posicion posicionImpactada)
 		{
 			this.PartesDestruidas = TamanioInicial;
 		}
 
-		public override void DaniarConMina ()
+		public override void DaniarConMina (IEnumerable<Posicion> posicionesImpactadas)
 		{
 			this.PartesDestruidas = TamanioInicial;
 		}

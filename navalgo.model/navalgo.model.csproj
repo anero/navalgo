@@ -91,5 +91,6 @@
     <Compile Include="Excepciones\ColumnaInvalidaException.cs" />
     <Compile Include="Excepciones\FilaInvalidaException.cs" />
     <Compile Include="Direccion.cs" />
+    <Compile Include="Disparo.cs" />
   </ItemGroup>
 </Project>

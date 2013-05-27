@@ -2,13 +2,14 @@ using System;
 
 namespace navalgo.model
 {
-	public class MinaPorContacto : IDisparo
+	public class MinaPorContacto : Disparo
 	{
-		public MinaPorContacto ()
+		public MinaPorContacto (Posicion posicionObjetivo)
+			: base(posicionObjetivo)
 		{
 		}
 
-		public void ImpactarNave(INave nave)
+		public override void ImpactarNave(INave nave)
 		{
 		}
 	}
