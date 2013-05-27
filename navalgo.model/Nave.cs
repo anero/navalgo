@@ -9,6 +9,23 @@ namespace navalgo.model
 			private set;
 		}
 
+		public bool Destruida {
+			get {
+				return PartesSanas == 0;
+			}
+		}
+
+		public int PartesSanas {
+			get {
+				return this.Tamanio - this.PartesDestruidas;
+			}
+		}
+
+		public int PartesDestruidas {
+			get;
+			protected set;
+		}
+
 		protected Nave (int tamanio)
 		{
 			if (tamanio <= 0) {
@@ -16,6 +33,15 @@ namespace navalgo.model
 			}
 
 			this.Tamanio = tamanio;
+			this.PartesDestruidas = 0;
+		}
+
+		public virtual void Impactar(IDisparo disparo)
+		{
+			if (this.PartesSanas == 0)
+				throw new NaveYaDestruidaException ();
+
+			this.PartesDestruidas += 1;
 		}
 	}
 }
