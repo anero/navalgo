@@ -22,15 +22,28 @@ namespace navalgo.model.test
 		}
 
 		[Test]
-		public void DisparoDeberiaDestruirParte()
+		public void DisparoDeberiaDaniarNave()
 		{
 			var mockNave = new MockNave (3);
-			var mockDisparo = new MockDisparo ();
 
 			Assert.AreEqual (3, mockNave.PartesSanas);
 			Assert.AreEqual (0, mockNave.PartesDestruidas);
 
-			mockNave.Impactar (mockDisparo);
+			mockNave.DaniarConDisparoConvencional ();
+
+			Assert.AreEqual (2, mockNave.PartesSanas);
+			Assert.AreEqual (1, mockNave.PartesDestruidas);
+		}
+
+		[Test]
+		public void MinaDeberiaDaniarNave()
+		{
+			var mockNave = new MockNave (3);
+
+			Assert.AreEqual (3, mockNave.PartesSanas);
+			Assert.AreEqual (0, mockNave.PartesDestruidas);
+
+			mockNave.DaniarConMina ();
 
 			Assert.AreEqual (2, mockNave.PartesSanas);
 			Assert.AreEqual (1, mockNave.PartesDestruidas);
@@ -38,13 +51,12 @@ namespace navalgo.model.test
 
 		[Test]
 		[ExpectedException(typeof(NaveYaDestruidaException))]
-		public void ImpactarSobreNaveDestruidaDeberiaArrojarExcepcion()
+		public void DaniarSobreNaveDestruidaDeberiaArrojarExcepcion()
 		{
 			var mockNave = new MockNave (1);
-			var mockDisparo = new MockDisparo ();
-			mockNave.Impactar (mockDisparo);
+			mockNave.DaniarConDisparoConvencional ();
 
-			mockNave.Impactar (mockDisparo);
+			mockNave.DaniarConDisparoConvencional ();
 		}
 
 		class MockNave : Nave
@@ -53,10 +65,6 @@ namespace navalgo.model.test
 				: base(tamanio)
 			{
 			}
-		}
-
-		class MockDisparo : IDisparo
-		{
 		}
 	}
 }

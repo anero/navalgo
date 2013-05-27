@@ -38,6 +38,7 @@
     <Compile Include="TestTablero.cs" />
     <Compile Include="TestNave.cs" />
     <Compile Include="TestLancha.cs" />
+    <Compile Include="TestDestructor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\navalgo.model\navalgo.model.csproj">

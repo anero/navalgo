@@ -36,7 +36,17 @@ namespace navalgo.model
 			this.PartesDestruidas = 0;
 		}
 
-		public virtual void Impactar(IDisparo disparo)
+		public virtual void DaniarConDisparoConvencional()
+		{
+			this.DestruirParte ();
+		}
+
+		public virtual void DaniarConMina()
+		{
+			this.DestruirParte ();
+		}
+
+		private void DestruirParte()
 		{
 			if (this.PartesSanas == 0)
 				throw new NaveYaDestruidaException ();

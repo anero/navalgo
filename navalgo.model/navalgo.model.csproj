@@ -82,5 +82,8 @@
     <Compile Include="IDisparo.cs" />
     <Compile Include="Excepciones\NaveYaDestruidaException.cs" />
     <Compile Include="Excepciones\TamanioInvalidoDeNaveException.cs" />
+    <Compile Include="Destructor.cs" />
+    <Compile Include="DisparoConvencional.cs" />
+    <Compile Include="MinaPorContacto.cs" />
   </ItemGroup>
 </Project>

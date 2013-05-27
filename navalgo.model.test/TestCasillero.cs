@@ -37,6 +37,13 @@ namespace navalgo.model.test
 
 		class MockNave : INave
 		{
+			public void DaniarConDisparoConvencional()
+			{
+			}
+
+			public void DaniarConMina()
+			{
+			}
 		}
 	}
 }

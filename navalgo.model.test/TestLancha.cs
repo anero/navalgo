@@ -18,24 +18,19 @@ namespace navalgo.model.test
 		}
 
 		[Test]
-		public void DosDisparosDeberianDestruirLaLancha()
+		public void DosDisparosDeCualquierTipoDeberianDestruirLaLancha()
 		{
 			var lancha = new Lancha ();
-			var mockDisparo = new MockDisparo ();
 
 			Assert.AreEqual (2, lancha.PartesSanas);
 			Assert.AreEqual (0, lancha.PartesDestruidas);
 
-			lancha.Impactar (mockDisparo);
-			lancha.Impactar (mockDisparo);
+			lancha.DaniarConDisparoConvencional ();
+			lancha.DaniarConMina ();
 
 			Assert.IsTrue (lancha.Destruida);
 			Assert.AreEqual (0, lancha.PartesSanas);
 			Assert.AreEqual (2, lancha.PartesDestruidas);
-		}
-
-		class MockDisparo : IDisparo
-		{
 		}
 	}
 }
