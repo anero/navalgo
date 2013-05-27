@@ -85,5 +85,6 @@
     <Compile Include="Destructor.cs" />
     <Compile Include="DisparoConvencional.cs" />
     <Compile Include="MinaPorContacto.cs" />
+    <Compile Include="Buque.cs" />
   </ItemGroup>
 </Project>
