@@ -78,8 +78,9 @@
     <Compile Include="INave.cs" />
     <Compile Include="Excepciones\NaveInvalidaException.cs" />
     <Compile Include="Nave.cs" />
-    <Compile Include="Excepciones\TamanioInvalidoDeNave.cs" />
     <Compile Include="Lancha.cs" />
     <Compile Include="IDisparo.cs" />
+    <Compile Include="Excepciones\NaveYaDestruidaException.cs" />
+    <Compile Include="Excepciones\TamanioInvalidoDeNaveException.cs" />
   </ItemGroup>
 </Project>

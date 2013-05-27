@@ -13,8 +13,9 @@ namespace navalgo.model
 		}
 
 		public int PartesSanas {
-			get;
-			private set;
+			get {
+				return this.Tamanio - this.PartesDestruidas;
+			}
 		}
 
 		public int PartesDestruidas {
@@ -25,13 +26,14 @@ namespace navalgo.model
 		public Lancha ()
 			: base(TamanioInicial)
 		{
-			this.PartesSanas = TamanioInicial;
 			this.PartesDestruidas = 0;
 		}
 
 		public void Impactar(IDisparo disparo)
 		{
-			this.PartesSanas -= 1;
+			if (this.PartesSanas == 0)
+				throw new NaveYaDestruidaException ();
+
 			this.PartesDestruidas += 1;
 		}
 	}

@@ -49,6 +49,18 @@ namespace navalgo.model.test
 			Assert.AreEqual (2, lancha.PartesDestruidas);
 		}
 
+		[Test]
+		[ExpectedException(typeof(NaveYaDestruidaException))]
+		public void ImpactarSobreLanchaDestruidaDeberiaArrojarExcepcion()
+		{
+			var lancha = new Lancha ();
+			var mockDisparo = new MockDisparo ();
+			lancha.Impactar (mockDisparo);
+			lancha.Impactar (mockDisparo);
+
+			lancha.Impactar (mockDisparo);
+		}
+
 		class MockDisparo : IDisparo
 		{
 		}
