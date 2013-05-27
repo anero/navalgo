@@ -87,5 +87,8 @@
     <Compile Include="MinaPorContacto.cs" />
     <Compile Include="Buque.cs" />
     <Compile Include="Rompehielos.cs" />
+    <Compile Include="Posicion.cs" />
+    <Compile Include="Excepciones\ColumnaInvalidaException.cs" />
+    <Compile Include="Excepciones\FilaInvalidaException.cs" />
   </ItemGroup>
 </Project>
