@@ -9,6 +9,12 @@ namespace navalgo.model
 			private set;
 		}
 
+		public Posicion Posicion {
+			get;
+
+			private set;
+		}
+
 		public bool Destruida {
 			get {
 				return PartesSanas == 0;
@@ -26,13 +32,18 @@ namespace navalgo.model
 			protected set;
 		}
 
-		protected Nave (int tamanio)
+		protected Nave (int tamanio, Posicion posicion)
 		{
 			if (tamanio <= 0) {
 				throw new TamanioInvalidoDeNaveException (tamanio);
 			}
 
+			if (posicion == null) {
+				throw new ArgumentNullException ("posicion");
+			}
+
 			this.Tamanio = tamanio;
+			this.Posicion = posicion;
 			this.PartesDestruidas = 0;
 		}
 

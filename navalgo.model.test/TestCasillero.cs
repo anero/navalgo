@@ -37,6 +37,8 @@ namespace navalgo.model.test
 
 		class MockNave : INave
 		{
+			public Posicion Posicion { get; set; }
+
 			public void DaniarConDisparoConvencional()
 			{
 			}

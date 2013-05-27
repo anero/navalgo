@@ -9,7 +9,7 @@ namespace navalgo.model.test
 		[Test]
 		public void DeberiaCrearLasPartesAlInicializar ()
 		{
-			var destructor = new Destructor ();
+			var destructor = new Destructor (new Posicion ('a', 1));
 
 			Assert.AreEqual (3, destructor.Tamanio);
 			Assert.IsFalse (destructor.Destruida);
@@ -20,7 +20,7 @@ namespace navalgo.model.test
 		[Test]
 		public void DisparoDirectoDeberiaDestruirParte()
 		{
-			var destructor = new Destructor ();
+			var destructor = new Destructor (new Posicion ('a', 1));
 			Assert.AreEqual (0, destructor.PartesDestruidas);
 
 			destructor.DaniarConDisparoConvencional ();
@@ -31,7 +31,7 @@ namespace navalgo.model.test
 		[Test]
 		public void MinaNoDeberiaDestruirParte()
 		{
-			var destructor = new Destructor ();
+			var destructor = new Destructor (new Posicion ('a', 1));
 			Assert.AreEqual (0, destructor.PartesDestruidas);
 
 			destructor.DaniarConMina ();
@@ -42,7 +42,7 @@ namespace navalgo.model.test
 		[Test]
 		public void TresDisparosConvencionalesDeberianDestruirDestructor()
 		{
-			var destructor = new Destructor ();
+			var destructor = new Destructor (new Posicion ('a', 1));
 			Assert.AreEqual (0, destructor.PartesDestruidas);
 
 			destructor.DaniarConDisparoConvencional ();
