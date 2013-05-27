@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+using System.Linq;
 
 namespace navalgo.model.test
 {
@@ -84,6 +85,19 @@ namespace navalgo.model.test
 			mockNave.DaniarConDisparoConvencional (posicion);
 
 			mockNave.DaniarConDisparoConvencional (posicion);
+		}
+
+		[Test]
+		public void DeberiaDevolverPosicionesOcupadasHorizontalmente()
+		{
+			var posicionInicial = new Posicion ('d', 5);
+
+			var mockNave = new MockNave (3, posicionInicial, Direccion.Este);
+
+			Assert.AreEqual (3, mockNave.PosicionesOcupadas.Count ());
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 5))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('e', 5))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('f', 5))));
 		}
 
 		class MockNave : Nave

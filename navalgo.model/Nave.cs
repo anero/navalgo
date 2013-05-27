@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace navalgo.model
 {
@@ -37,6 +38,12 @@ namespace navalgo.model
 			protected set;
 		}
 
+		public IEnumerable<Posicion> PosicionesOcupadas {
+			get {
+				return this.CalcularPosicionesOcupadas ();
+			}
+		}
+
 		protected Nave (int tamanio, Posicion posicion, Direccion direccion)
 		{
 			if (tamanio <= 0) {
@@ -69,6 +76,17 @@ namespace navalgo.model
 				throw new NaveYaDestruidaException ();
 
 			this.PartesDestruidas += 1;
+		}
+
+		private IEnumerable<Posicion> CalcularPosicionesOcupadas()
+		{
+			var posicionesOcupadas = new List<Posicion> () { this.Posicion };
+			for(int i=0; i < this.PartesSanas - 1; i++)
+			{
+				posicionesOcupadas.Add (posicionesOcupadas.Last().ObtenerSiguientePosicion(this.Direccion));
+			}
+
+			return posicionesOcupadas;
 		}
 	}
 }
