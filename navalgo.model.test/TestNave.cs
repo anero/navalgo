@@ -15,7 +15,7 @@ namespace navalgo.model.test
 		}
 
 		[Test]
-		[ExpectedException(typeof(TamanioInvalidoDeNave))]
+		[ExpectedException(typeof(TamanioInvalidoDeNaveException))]
 		public void DeberiaLanzarExcepcionAlSetearTamanioInvalido()
 		{
 			new MockNave (0);

@@ -12,7 +12,7 @@ namespace navalgo.model
 		protected Nave (int tamanio)
 		{
 			if (tamanio <= 0) {
-				throw new TamanioInvalidoDeNave (tamanio);
+				throw new TamanioInvalidoDeNaveException (tamanio);
 			}
 
 			this.Tamanio = tamanio;
