@@ -135,6 +135,48 @@ namespace navalgo.model.test
 			new MockNave (3, posicionInicial, Direccion.Norte);
 		}
 
+		[Test]
+		[Ignore("WiP")]
+		public void NoDeberiaDevolverPartesDestruidasDeLasPuntasAlDevolverPosicionesOcupadas()
+		{
+			var posicionInicial = new Posicion ('d', 5);
+
+			var mockNave = new MockNave (3, posicionInicial, Direccion.Este);
+
+			mockNave.DaniarConDisparoConvencional (new Posicion('d', 5));
+
+			Assert.AreEqual (2, mockNave.PosicionesOcupadas.Count ());
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 6))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 7))));
+
+			mockNave.DaniarConDisparoConvencional (new Posicion('d', 7));
+
+			Assert.AreEqual (1, mockNave.PosicionesOcupadas.Count ());
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 6))));
+		}
+
+		[Test]
+		[Ignore("WiP")]
+		public void NoDeberiaDevolverPartesDestruidasDelMedioAlDevolverPosicionesOcupadas()
+		{
+			var posicionInicial = new Posicion ('a', 5);
+
+			var mockNave = new MockNave (4, posicionInicial, Direccion.Este);
+
+			mockNave.DaniarConDisparoConvencional (new Posicion('b', 5));
+
+			Assert.AreEqual (3, mockNave.PosicionesOcupadas.Count ());
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('a', 5))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('c', 5))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 5))));
+
+			mockNave.DaniarConDisparoConvencional (new Posicion('c', 5));
+
+			Assert.AreEqual (1, mockNave.PosicionesOcupadas.Count ());
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('a', 5))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 5))));
+		}
+
 		class MockNave : Nave
 		{
 			public MockNave(int tamanio, Posicion posicion, Direccion direccion)
