@@ -58,6 +58,14 @@ namespace navalgo.model
 			this.Posicion = posicion;
 			this.Direccion = direccion;
 			this.PartesDestruidas = 0;
+
+			try
+			{
+				this.CalcularPosicionesOcupadas ();
+			}
+			catch(PosicionInvalidaException) {
+				throw new NaveFueraDeRangoException ();
+			}
 		}
 
 		public virtual void DaniarConDisparoConvencional(Posicion posicionImpactada)

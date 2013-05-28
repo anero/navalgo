@@ -9,7 +9,7 @@ namespace navalgo.model.test
 		[Test]
 		public void DeberiaInicializarCorrectamenteLosAtributos ()
 		{
-			var posicion = new Posicion ('a', 1);
+			var posicion = new Posicion ('e', 5);
 			var destructor = new Destructor (posicion, Direccion.Este);
 
 			Assert.AreEqual (3, destructor.Tamanio);
@@ -23,7 +23,7 @@ namespace navalgo.model.test
 		[Test]
 		public void DisparoDirectoDeberiaDestruirParte()
 		{
-			var posicion = new Posicion ('a', 1);
+			var posicion = new Posicion ('e', 5);
 			var destructor = new Destructor (posicion, Direccion.Norte);
 			Assert.AreEqual (0, destructor.PartesDestruidas);
 
@@ -35,7 +35,7 @@ namespace navalgo.model.test
 		[Test]
 		public void MinaNoDeberiaDestruirParte()
 		{
-			var posicion = new Posicion ('a', 1);
+			var posicion = new Posicion ('e', 5);
 			var destructor = new Destructor (posicion, Direccion.Norte);
 			Assert.AreEqual (0, destructor.PartesDestruidas);
 
@@ -47,7 +47,7 @@ namespace navalgo.model.test
 		[Test]
 		public void TresDisparosConvencionalesDeberianDestruirDestructor()
 		{
-			var posicion = new Posicion ('a', 1);
+			var posicion = new Posicion ('e', 5);
 			var destructor = new Destructor (posicion, Direccion.Norte);
 			Assert.AreEqual (0, destructor.PartesDestruidas);
 

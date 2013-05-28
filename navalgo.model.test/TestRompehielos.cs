@@ -9,7 +9,7 @@ namespace navalgo.model.test
 		[Test]
 		public void DeberiaCrearLasPartesAlInicializar ()
 		{
-			var posicion = new Posicion ('a', 1);
+			var posicion = new Posicion ('e', 5);
 			var rompehielos = new Rompehielos (posicion, Direccion.NorOeste);
 
 			Assert.AreEqual (3, rompehielos.Tamanio);

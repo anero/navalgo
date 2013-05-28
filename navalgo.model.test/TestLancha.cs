@@ -9,7 +9,7 @@ namespace navalgo.model.test
 		[Test]
 		public void DeberiaInicializarCorrectamenteLosAtributos ()
 		{
-			var posicion = new Posicion ('a', 1);
+			var posicion = new Posicion ('e', 5);
 			var lancha = new Lancha (posicion, Direccion.Norte);
 
 			Assert.AreEqual (2, lancha.Tamanio);
@@ -23,7 +23,7 @@ namespace navalgo.model.test
 		[Test]
 		public void DosDisparosDeCualquierTipoDeberianDestruirLaLancha()
 		{
-			var posicion = new Posicion ('a', 1);
+			var posicion = new Posicion ('e', 5);
 			var lancha = new Lancha (posicion, Direccion.Norte);
 
 			Assert.AreEqual (2, lancha.PartesSanas);

@@ -92,5 +92,7 @@
     <Compile Include="Excepciones\FilaInvalidaException.cs" />
     <Compile Include="Direccion.cs" />
     <Compile Include="Disparo.cs" />
+    <Compile Include="Excepciones\NaveFueraDeRangoException.cs" />
+    <Compile Include="Excepciones\PosicionInvalidaException.cs" />
   </ItemGroup>
 </Project>

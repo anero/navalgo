@@ -31,26 +31,7 @@ namespace navalgo.model
 
 		public Posicion ObtenerSiguientePosicion(Direccion direccion)
 		{
-			switch (direccion) {
-			case Direccion.Norte:
-				return new Posicion (this.Columna, this.Fila - 1);
-			case Direccion.Sur:
-				return new Posicion (this.Columna, this.Fila + 1);
-			case Direccion.Este:
-				return new Posicion (this.ObtenerColumnaSiguiente(Direccion.Este), this.Fila);
-			case Direccion.Oeste:
-				return new Posicion (this.ObtenerColumnaSiguiente(Direccion.Oeste), this.Fila);
-			case Direccion.NorEste:
-				return new Posicion (this.ObtenerColumnaSiguiente(Direccion.NorEste), this.Fila - 1);
-			case Direccion.SurEste:
-				return new Posicion (this.ObtenerColumnaSiguiente(Direccion.SurEste), this.Fila + 1);
-			case Direccion.NorOeste:
-				return new Posicion (this.ObtenerColumnaSiguiente(Direccion.NorOeste), this.Fila - 1);
-			case Direccion.SurOeste:
-				return new Posicion (this.ObtenerColumnaSiguiente(Direccion.SurOeste), this.Fila + 1);
-			default:
-				throw new NotImplementedException();
-			}
+			return new Posicion (this.ObtenerColumnaSiguiente(direccion), this.ObtenerFilaSiguiente (direccion));
 		}
 
 		public override bool Equals (object obj)
@@ -70,7 +51,7 @@ namespace navalgo.model
 
 		private char ObtenerColumnaSiguiente(Direccion direccion)
 		{
-			int offset = 0;
+			int offset;
 			switch (direccion) {
 			case Direccion.Este:
 			case Direccion.NorEste:
@@ -81,6 +62,10 @@ namespace navalgo.model
 			case Direccion.NorOeste:
 			case Direccion.SurOeste:
 				offset = -1;
+				break;
+			case Direccion.Norte:
+			case Direccion.Sur:
+				offset = 0;
 				break;
 			default:
 				throw new ArgumentException (string.Format ("No se puede obtener siguiente columna para la direccion '{0}'", direccion));
@@ -98,6 +83,40 @@ namespace navalgo.model
 			if (columna < 'a' || columna > 'z') {
 				throw new ColumnaInvalidaException (columna);
 			}
+		}
+
+		private int ObtenerFilaSiguiente(Direccion direccion)
+		{
+			int offset;
+			switch (direccion) {
+			case Direccion.Norte:
+			case Direccion.NorEste:
+			case Direccion.NorOeste:
+				offset = -1;
+				break;
+			case Direccion.SurEste:
+			case Direccion.Sur:
+			case Direccion.SurOeste:
+				offset = 1;
+				break;
+			case Direccion.Este:
+			case Direccion.Oeste:
+				offset = 0;
+				break;
+			default:
+				throw new ArgumentException (string.Format ("No se puede obtener siguiente fila para la direccion '{0}'", direccion));
+			}
+
+			int filaSiguiente = this.Fila + offset;
+			this.ValidarFila (filaSiguiente);
+
+			return filaSiguiente;
+		}
+
+		private void ValidarFila(int fila)
+		{
+			if (fila <= 0)
+				throw new FilaInvalidaException (fila);
 		}
 	}
 }

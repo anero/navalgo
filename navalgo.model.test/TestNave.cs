@@ -10,15 +10,15 @@ namespace navalgo.model.test
 		[Test]
 		public void DeberiaSetearTamanioAlConstruir ()
 		{
-			var mockNave = new MockNave (10, new Posicion ('a', 1), Direccion.Norte);
+			var mockNave = new MockNave (4, new Posicion ('e', 5), Direccion.Norte);
 
-			Assert.AreEqual (10, mockNave.Tamanio);
+			Assert.AreEqual (4, mockNave.Tamanio);
 		}
 
 		[Test]
 		public void DeberiaSetearPosicionAlConstruir()
 		{
-			var posicion = new Posicion ('a', 1);
+			var posicion = new Posicion ('e', 5);
 			var mockNave = new MockNave (1, posicion, Direccion.Norte);
 
 			Assert.IsTrue (posicion.Equals(mockNave.Posicion));
@@ -27,7 +27,7 @@ namespace navalgo.model.test
 		[Test]
 		public void DeberiaSetearDireccionAlConstruir()
 		{
-			var mockNave = new MockNave (1, new Posicion ('a', 1), Direccion.Sur);
+			var mockNave = new MockNave (1, new Posicion ('e', 5), Direccion.Sur);
 
 			Assert.AreEqual(Direccion.Sur, mockNave.Direccion);
 		}
@@ -49,7 +49,7 @@ namespace navalgo.model.test
 		[Test]
 		public void DisparoDeberiaDaniarNave()
 		{
-			var posicion = new Posicion ('a', 1);
+			var posicion = new Posicion ('e', 5);
 			var mockNave = new MockNave (3, posicion, Direccion.Norte);
 
 			Assert.AreEqual (3, mockNave.PartesSanas);
@@ -64,7 +64,7 @@ namespace navalgo.model.test
 		[Test]
 		public void MinaDeberiaDaniarNave()
 		{
-			var posicion = new Posicion ('a', 1);
+			var posicion = new Posicion ('e', 5);
 			var mockNave = new MockNave (3, posicion, Direccion.Norte);
 
 			Assert.AreEqual (3, mockNave.PartesSanas);
@@ -80,7 +80,7 @@ namespace navalgo.model.test
 		[ExpectedException(typeof(NaveYaDestruidaException))]
 		public void DaniarSobreNaveDestruidaDeberiaArrojarExcepcion()
 		{
-			var posicion = new Posicion ('a', 1);
+			var posicion = new Posicion ('e', 5);
 			var mockNave = new MockNave (1, posicion, Direccion.Norte);
 			mockNave.DaniarConDisparoConvencional (posicion);
 
@@ -98,6 +98,41 @@ namespace navalgo.model.test
 			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 5))));
 			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('e', 5))));
 			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('f', 5))));
+		}
+
+		[Test]
+		public void DeberiaDevolverPosicionesOcupadasVerticalmente()
+		{
+			var posicionInicial = new Posicion ('d', 5);
+
+			var mockNave = new MockNave (3, posicionInicial, Direccion.Sur);
+
+			Assert.AreEqual (3, mockNave.PosicionesOcupadas.Count ());
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 5))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 6))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 7))));
+		}
+
+		[Test]
+		public void DeberiaDevolverPosicionesOcupadasDiagonalmente()
+		{
+			var posicionInicial = new Posicion ('d', 5);
+
+			var mockNave = new MockNave (3, posicionInicial, Direccion.SurEste);
+
+			Assert.AreEqual (3, mockNave.PosicionesOcupadas.Count ());
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 5))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('e', 6))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('f', 7))));
+		}
+
+		[Test]
+		[ExpectedException(typeof(NaveFueraDeRangoException))]
+		public void DeberiaArrojarExcepcionSiInicializaConPosicionConFilaFueraDeRango()
+		{
+			var posicionInicial = new Posicion ('a', 1);
+
+			new MockNave (3, posicionInicial, Direccion.Norte);
 		}
 
 		class MockNave : Nave
