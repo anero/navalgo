@@ -29,8 +29,8 @@ namespace navalgo.model.test
 			Assert.AreEqual (2, lancha.PartesSanas);
 			Assert.AreEqual (0, lancha.PartesDestruidas);
 
-			lancha.DaniarConDisparoConvencional (posicion);
-			lancha.DaniarConMina (new[] { posicion });
+			lancha.DaniarConDisparoConvencional (new Posicion ('e', 5));
+			lancha.DaniarConMina (new[] { new Posicion ('e', 4) });
 
 			Assert.IsTrue (lancha.Destruida);
 			Assert.AreEqual (0, lancha.PartesSanas);

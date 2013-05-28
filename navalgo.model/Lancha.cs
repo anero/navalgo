@@ -7,7 +7,7 @@ namespace navalgo.model
 		private const int TamanioInicial = 2;
 
 		public Lancha (Posicion posicion, Direccion direccion)
-			: base(TamanioInicial, posicion, direccion)
+			: base(TamanioInicial, posicion, direccion, typeof(Parte))
 		{
 		}
 	}

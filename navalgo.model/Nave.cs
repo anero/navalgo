@@ -6,9 +6,13 @@ namespace navalgo.model
 {
 	public abstract class Nave : INave
 	{
-		public int Tamanio {
+		protected IEnumerable<IParte> Partes {
 			get;
 			private set;
+		}
+
+		public int Tamanio {
+			get { return this.Partes.Count (); }
 		}
 
 		public Posicion Posicion {
@@ -28,23 +32,20 @@ namespace navalgo.model
 		}
 
 		public int PartesSanas {
-			get {
-				return this.Tamanio - this.PartesDestruidas;
-			}
+			get { return this.Partes.Count (p => !p.Destruida()); }
 		}
 
 		public int PartesDestruidas {
-			get;
-			protected set;
+			get { return this.Partes.Count (p => p.Destruida()); }
 		}
 
 		public IEnumerable<Posicion> PosicionesOcupadas {
 			get {
-				return this.CalcularPosicionesOcupadas ();
+				return this.Partes.Where (p => !p.Destruida()).Select (p => p.Posicion);
 			}
 		}
 
-		protected Nave (int tamanio, Posicion posicion, Direccion direccion)
+		protected Nave(int tamanio, Posicion posicion, Direccion direccion, Type tipoDeParte)
 		{
 			if (tamanio <= 0) {
 				throw new TamanioInvalidoDeNaveException (tamanio);
@@ -54,47 +55,57 @@ namespace navalgo.model
 				throw new ArgumentNullException ("posicion");
 			}
 
-			this.Tamanio = tamanio;
 			this.Posicion = posicion;
 			this.Direccion = direccion;
-			this.PartesDestruidas = 0;
 
-			try
-			{
-				this.CalcularPosicionesOcupadas ();
-			}
-			catch(PosicionInvalidaException) {
-				throw new NaveFueraDeRangoException ();
-			}
+			this.CrearPartes (tamanio, tipoDeParte);
 		}
 
 		public virtual void DaniarConDisparoConvencional(Posicion posicionImpactada)
 		{
-			this.DestruirParte ();
+			this.DestruirParte (new[] { posicionImpactada });
 		}
 
 		public virtual void DaniarConMina(IEnumerable<Posicion> posicionesImpactadas)
 		{
-			this.DestruirParte ();
+			this.DestruirParte (posicionesImpactadas);
 		}
 
-		private void DestruirParte()
+		private void DestruirParte(IEnumerable<Posicion> posicionesImpactadas)
 		{
 			if (this.PartesSanas == 0)
 				throw new NaveYaDestruidaException ();
 
-			this.PartesDestruidas += 1;
+			foreach (var posicionImpactada in posicionesImpactadas) 
+			{
+				IParte parteImpactada = this.Partes.FirstOrDefault (p => p.Posicion.Equals(posicionImpactada));
+				if (parteImpactada != null)
+				{
+					parteImpactada.RecibirImpacto ();
+				}
+			}
 		}
 
-		private IEnumerable<Posicion> CalcularPosicionesOcupadas()
+		void CrearPartes (int tamanio, Type tipoDeParte)
 		{
-			var posicionesOcupadas = new List<Posicion> () { this.Posicion };
-			for(int i=0; i < this.PartesSanas - 1; i++)
-			{
-				posicionesOcupadas.Add (posicionesOcupadas.Last().ObtenerSiguientePosicion(this.Direccion));
-			}
+			var partesCreadas = new List<IParte>();
 
-			return posicionesOcupadas;
+			Posicion posicionParaParteCreada = this.Posicion;
+
+			try
+			{
+				for (int i=0; i < tamanio; i++) 
+				{
+					partesCreadas.Add((IParte)Activator.CreateInstance (tipoDeParte, posicionParaParteCreada));
+					posicionParaParteCreada = posicionParaParteCreada.ObtenerSiguientePosicion (this.Direccion);
+				}
+
+				this.Partes = partesCreadas;
+			}
+			catch(PosicionInvalidaException)
+			{
+				throw new NaveFueraDeRangoException ();
+			}
 		}
 	}
 }

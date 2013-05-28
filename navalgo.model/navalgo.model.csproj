@@ -81,7 +81,6 @@
     <Compile Include="Lancha.cs" />
     <Compile Include="IDisparo.cs" />
     <Compile Include="Excepciones\NaveYaDestruidaException.cs" />
-    <Compile Include="Excepciones\TamanioInvalidoDeNaveException.cs" />
     <Compile Include="Destructor.cs" />
     <Compile Include="DisparoConvencional.cs" />
     <Compile Include="MinaPorContacto.cs" />
@@ -98,5 +97,6 @@
     <Compile Include="Excepciones\ParteDestruidaException.cs" />
     <Compile Include="ParteDobleDuracion.cs" />
     <Compile Include="IParte.cs" />
+    <Compile Include="Excepciones\TamanioInvalidoDeNaveException.cs" />
   </ItemGroup>
 </Project>

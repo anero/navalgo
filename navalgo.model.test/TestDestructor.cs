@@ -51,9 +51,9 @@ namespace navalgo.model.test
 			var destructor = new Destructor (posicion, Direccion.Norte);
 			Assert.AreEqual (0, destructor.PartesDestruidas);
 
-			destructor.DaniarConDisparoConvencional (posicion);
-			destructor.DaniarConDisparoConvencional (posicion);
-			destructor.DaniarConDisparoConvencional (posicion);
+			destructor.DaniarConDisparoConvencional (new Posicion('e', 5));
+			destructor.DaniarConDisparoConvencional (new Posicion('e', 4));
+			destructor.DaniarConDisparoConvencional (new Posicion('e', 3));
 
 			Assert.IsTrue (destructor.Destruida);
 			Assert.AreEqual (3, destructor.PartesDestruidas);

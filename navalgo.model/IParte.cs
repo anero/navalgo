@@ -4,7 +4,9 @@ namespace navalgo.model
 {
 	public interface IParte
 	{
-		bool Destruida { get; }
+		Posicion Posicion { get; }
+
+		bool Destruida();
 
 		void RecibirImpacto ();
 	}

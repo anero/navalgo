@@ -8,18 +8,29 @@ namespace navalgo.model
 		private const int TamanioInicial = 4;
 
 		public Buque (Posicion posicion, Direccion direccion)
-			: base(TamanioInicial, posicion, direccion)
+			: base(TamanioInicial, posicion, direccion, typeof(Parte))
 		{
 		}
 
 		public override void DaniarConDisparoConvencional (Posicion posicionImpactada)
 		{
-			this.PartesDestruidas = TamanioInicial;
+			this.DestruirBuque ();
 		}
 
 		public override void DaniarConMina (IEnumerable<Posicion> posicionesImpactadas)
 		{
-			this.PartesDestruidas = TamanioInicial;
+			this.DestruirBuque ();
+		}
+
+		private void DestruirBuque()
+		{
+			foreach (IParte parte in this.Partes) 
+			{
+				if (!parte.Destruida ()) 
+				{
+					parte.RecibirImpacto ();
+				}
+			}
 		}
 	}
 }
