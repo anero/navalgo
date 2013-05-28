@@ -94,5 +94,9 @@
     <Compile Include="Disparo.cs" />
     <Compile Include="Excepciones\NaveFueraDeRangoException.cs" />
     <Compile Include="Excepciones\PosicionInvalidaException.cs" />
+    <Compile Include="Parte.cs" />
+    <Compile Include="Excepciones\ParteDestruidaException.cs" />
+    <Compile Include="ParteDobleDuracion.cs" />
+    <Compile Include="IParte.cs" />
   </ItemGroup>
 </Project>
