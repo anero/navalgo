@@ -23,15 +23,6 @@ namespace navalgo.model.test
 		}
 
 		[Test]
-		public void DeberiaSetearPosicionAlConstruir()
-		{
-			var posicion = new Posicion ('e', 5);
-			var mockNave = new MockNave (1, posicion, Direccion.Norte);
-
-			Assert.IsTrue (posicion.Equals(mockNave.Posicion));
-		}
-
-		[Test]
 		public void DeberiaSetearDireccionAlConstruir()
 		{
 			var mockNave = new MockNave (1, new Posicion ('e', 5), Direccion.Sur);
@@ -70,13 +61,14 @@ namespace navalgo.model.test
 			var posicion = new Posicion ('e', 5);
 			var mockNave = new MockNave (3, posicion, Direccion.Norte);
 
-			Assert.AreEqual (3, mockNave.PartesSanas);
-			Assert.AreEqual (0, mockNave.PartesDestruidas);
+			Assert.AreEqual (3, mockNave.PosicionesDePartesSanas.Count ());
+			Assert.AreEqual (0, mockNave.PosicionesDePartesDestruidas.Count ());
 
 			mockNave.DaniarConDisparoConvencional (posicion);
 
-			Assert.AreEqual (2, mockNave.PartesSanas);
-			Assert.AreEqual (1, mockNave.PartesDestruidas);
+			Assert.AreEqual (2, mockNave.PosicionesDePartesSanas.Count ());
+			Assert.AreEqual (1, mockNave.PosicionesDePartesDestruidas.Count ());
+			Assert.IsTrue (mockNave.PosicionesDePartesDestruidas.ElementAt(0).Equals(posicion));
 		}
 
 		[Test]
@@ -85,13 +77,13 @@ namespace navalgo.model.test
 			var posicion = new Posicion ('e', 5);
 			var mockNave = new MockNave (3, posicion, Direccion.Norte);
 
-			Assert.AreEqual (3, mockNave.PartesSanas);
-			Assert.AreEqual (0, mockNave.PartesDestruidas);
+			Assert.AreEqual (3, mockNave.PosicionesDePartesSanas.Count ());
+			Assert.AreEqual (0, mockNave.PosicionesDePartesDestruidas.Count ());
 
 			mockNave.DaniarConMina (new[] { posicion });
 
-			Assert.AreEqual (2, mockNave.PartesSanas);
-			Assert.AreEqual (1, mockNave.PartesDestruidas);
+			Assert.AreEqual (2, mockNave.PosicionesDePartesSanas.Count ());
+			Assert.AreEqual (1, mockNave.PosicionesDePartesDestruidas.Count ());
 		}
 
 		[Test]
@@ -154,7 +146,7 @@ namespace navalgo.model.test
 		}
 
 		[Test]
-		public void NoDeberiaDevolverPartesDestruidasDeLasPuntasAlDevolverPosicionesOcupadas()
+		public void NoDeberiaDevolverPartesDestruidasDeLasPuntasAlDevolverPosicionesDePartesSanas()
 		{
 			var posicionInicial = new Posicion ('d', 5);
 
@@ -162,18 +154,18 @@ namespace navalgo.model.test
 
 			mockNave.DaniarConDisparoConvencional (new Posicion('d', 5));
 
-			Assert.AreEqual (2, mockNave.PosicionesOcupadas.Count ());
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('e', 5))));
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('f', 5))));
+			Assert.AreEqual (2, mockNave.PosicionesDePartesSanas.Count ());
+			Assert.IsTrue (mockNave.PosicionesDePartesSanas.Any(po => po.Equals(new Posicion('e', 5))));
+			Assert.IsTrue (mockNave.PosicionesDePartesSanas.Any(po => po.Equals(new Posicion('f', 5))));
 
 			mockNave.DaniarConDisparoConvencional (new Posicion('f', 5));
 
-			Assert.AreEqual (1, mockNave.PosicionesOcupadas.Count ());
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('e', 5))));
+			Assert.AreEqual (1, mockNave.PosicionesDePartesSanas.Count ());
+			Assert.IsTrue (mockNave.PosicionesDePartesSanas.Any(po => po.Equals(new Posicion('e', 5))));
 		}
 
 		[Test]
-		public void NoDeberiaDevolverPartesDestruidasDelMedioAlDevolverPosicionesOcupadas()
+		public void NoDeberiaDevolverPartesDestruidasDelMedioAlDevolverPosicionesDePartesSanas()
 		{
 			var posicionInicial = new Posicion ('a', 5);
 
@@ -181,16 +173,16 @@ namespace navalgo.model.test
 
 			mockNave.DaniarConDisparoConvencional (new Posicion('b', 5));
 
-			Assert.AreEqual (3, mockNave.PosicionesOcupadas.Count ());
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('a', 5))));
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('c', 5))));
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 5))));
+			Assert.AreEqual (3, mockNave.PosicionesDePartesSanas.Count ());
+			Assert.IsTrue (mockNave.PosicionesDePartesSanas.Any(po => po.Equals(new Posicion('a', 5))));
+			Assert.IsTrue (mockNave.PosicionesDePartesSanas.Any(po => po.Equals(new Posicion('c', 5))));
+			Assert.IsTrue (mockNave.PosicionesDePartesSanas.Any(po => po.Equals(new Posicion('d', 5))));
 
 			mockNave.DaniarConDisparoConvencional (new Posicion('c', 5));
 
-			Assert.AreEqual (2, mockNave.PosicionesOcupadas.Count ());
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('a', 5))));
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 5))));
+			Assert.AreEqual (2, mockNave.PosicionesDePartesSanas.Count ());
+			Assert.IsTrue (mockNave.PosicionesDePartesSanas.Any(po => po.Equals(new Posicion('a', 5))));
+			Assert.IsTrue (mockNave.PosicionesDePartesSanas.Any(po => po.Equals(new Posicion('d', 5))));
 		}
 
 		[Test]
@@ -223,6 +215,42 @@ namespace navalgo.model.test
 			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('e', 2))));
 			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('f', 3))));
 			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('g', 4))));
+		}
+
+		[Test]
+		public void DeberiaRevertirDireccion()
+		{
+			var mockNave = new MockNave (3, new Posicion ('d', 5), Direccion.Norte);
+		
+			Assert.AreEqual (Direccion.Norte, mockNave.Direccion);
+
+			mockNave.RevertirDireccion ();
+
+			Assert.AreEqual (Direccion.Sur, mockNave.Direccion);
+		}
+
+		[Test]
+		public void DeberiaRevertirDireccionYAvanzarHaciaLaNuevaDireccion()
+		{
+			var mockNave = new MockNave (3, new Posicion ('d', 5), Direccion.Norte);
+
+			Assert.AreEqual (Direccion.Norte, mockNave.Direccion);
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 5))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 4))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 3))));
+
+			mockNave.RevertirDireccion ();
+
+			Assert.AreEqual (Direccion.Sur, mockNave.Direccion);
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 5))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 4))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 3))));
+
+			mockNave.AvanzarPosicion ();
+
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 6))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 5))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 4))));
 		}
 
 		class MockNave : Nave

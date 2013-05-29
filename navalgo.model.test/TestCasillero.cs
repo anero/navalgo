@@ -38,7 +38,7 @@ namespace navalgo.model.test
 
 		class MockNave : INave
 		{
-			public Posicion Posicion { get; set; }
+			public IEnumerable<Posicion> PosicionesOcupadas { get; set; }
 
 			public Direccion Direccion { get; set; }
 
@@ -53,6 +53,11 @@ namespace navalgo.model.test
 			}
 
 			public void AvanzarPosicion ()
+			{
+				throw new NotImplementedException ();
+			}
+
+			public void RevertirDireccion ()
 			{
 				throw new NotImplementedException ();
 			}

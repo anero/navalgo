@@ -15,15 +15,6 @@ namespace navalgo.model
 			get { return this.Partes.Count (); }
 		}
 
-		public Posicion Posicion {
-			get 
-			{
-				IParte parteInicial = this.Partes.FirstOrDefault (p => !p.Destruida());
-
-				return parteInicial != null ? parteInicial.Posicion : null;
-			}
-		}
-
 		public Direccion Direccion {
 			get;
 			private set;
@@ -31,21 +22,21 @@ namespace navalgo.model
 
 		public bool Destruida {
 			get {
-				return PartesSanas == 0;
+				return PosicionesDePartesSanas.Count () == 0;
 			}
 		}
 
-		public int PartesSanas {
-			get { return this.Partes.Count (p => !p.Destruida()); }
+		public IEnumerable<Posicion> PosicionesDePartesSanas {
+			get { return this.Partes.Where (p => !p.Destruida()).Select (p => p.Posicion); }
 		}
 
-		public int PartesDestruidas {
-			get { return this.Partes.Count (p => p.Destruida()); }
+		public IEnumerable<Posicion> PosicionesDePartesDestruidas {
+			get { return this.Partes.Where (p => p.Destruida()).Select (p => p.Posicion); }
 		}
 
 		public IEnumerable<Posicion> PosicionesOcupadas {
 			get {
-				return this.Partes.Where (p => !p.Destruida()).Select (p => p.Posicion);
+				return this.Partes.Select (p => p.Posicion);
 			}
 		}
 
@@ -82,9 +73,15 @@ namespace navalgo.model
 			}
 		}
 
+		public void RevertirDireccion ()
+		{
+			this.Direccion = this.Direccion.DireccionOpuesta();
+			this.InvertirPartes();
+		}
+
 		private void DestruirParte(IEnumerable<Posicion> posicionesImpactadas)
 		{
-			if (this.PartesSanas == 0)
+			if (this.PosicionesDePartesSanas.Count () == 0)
 				throw new NaveYaDestruidaException ();
 
 			foreach (var posicionImpactada in posicionesImpactadas) 
@@ -116,6 +113,21 @@ namespace navalgo.model
 			catch(PosicionInvalidaException)
 			{
 				throw new NaveFueraDeRangoException ();
+			}
+		}
+
+		private void InvertirPartes()
+		{
+			int indexDesdeFrente = 0; 
+			int indexDesdeAtras = this.Partes.Count() - 1;
+			for (; indexDesdeFrente < indexDesdeAtras; indexDesdeFrente++, indexDesdeAtras--) 
+			{
+				IParte parteFrente = this.Partes.ElementAt (indexDesdeFrente);
+				IParte parteAtras = this.Partes.ElementAt (indexDesdeAtras);
+				Posicion posicionAtras = parteAtras.Posicion;
+
+				parteAtras.ActualizarPosicion (parteFrente.Posicion);
+				parteFrente.ActualizarPosicion (posicionAtras);
 			}
 		}
 	}

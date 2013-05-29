@@ -25,7 +25,7 @@ namespace navalgo.model.test
 
 		class MockNave : INave
 		{
-			public Posicion Posicion {
+			public IEnumerable<Posicion> PosicionesOcupadas {
 				get {
 					throw new NotImplementedException ();
 				}
@@ -58,6 +58,11 @@ namespace navalgo.model.test
 			}
 
 			public void AvanzarPosicion ()
+			{
+				throw new NotImplementedException ();
+			}
+
+			public void RevertirDireccion ()
 			{
 				throw new NotImplementedException ();
 			}

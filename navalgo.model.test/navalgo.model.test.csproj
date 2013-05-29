@@ -31,6 +31,7 @@
     <Reference Include="nunit.framework">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Core" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -46,6 +47,7 @@
     <Compile Include="TestDisparoConvencional.cs" />
     <Compile Include="TestParte.cs" />
     <Compile Include="TestParteDobleDuracion.cs" />
+    <Compile Include="TestDireccion.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\navalgo.model\navalgo.model.csproj">

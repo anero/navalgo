@@ -5,7 +5,7 @@ namespace navalgo.model
 {
 	public interface INave
 	{
-		Posicion Posicion { get; }
+		IEnumerable<Posicion> PosicionesOcupadas { get; }
 
 		Direccion Direccion { get; }
 
@@ -14,6 +14,8 @@ namespace navalgo.model
 		void DaniarConMina(IEnumerable<Posicion> posicionesImpactadas);
 
 		void AvanzarPosicion();
+
+		void RevertirDireccion ();
 	}
 }
 

@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+using System.Linq;
 
 namespace navalgo.model.test
 {
@@ -13,11 +14,14 @@ namespace navalgo.model.test
 			var buque = new Buque (posicion, Direccion.Oeste);
 
 			Assert.AreEqual (4, buque.Tamanio);
-			Assert.AreEqual (posicion, buque.Posicion);
+			Assert.IsTrue (buque.PosicionesOcupadas.Any(p => p.Equals(new Posicion('e', 5))));
+			Assert.IsTrue (buque.PosicionesOcupadas.Any(p => p.Equals(new Posicion('d', 5))));
+			Assert.IsTrue (buque.PosicionesOcupadas.Any(p => p.Equals(new Posicion('c', 5))));
+			Assert.IsTrue (buque.PosicionesOcupadas.Any(p => p.Equals(new Posicion('b', 5))));
 			Assert.AreEqual (Direccion.Oeste, buque.Direccion);
 			Assert.IsFalse (buque.Destruida);
-			Assert.AreEqual (4, buque.PartesSanas);
-			Assert.AreEqual (0, buque.PartesDestruidas);
+			Assert.AreEqual (4, buque.PosicionesDePartesSanas.Count());
+			Assert.AreEqual (0, buque.PosicionesDePartesDestruidas.Count());
 		}
 
 		[Test]
@@ -29,8 +33,8 @@ namespace navalgo.model.test
 			buque.DaniarConDisparoConvencional (posicion);
 
 			Assert.IsTrue (buque.Destruida);
-			Assert.AreEqual (4, buque.PartesDestruidas);
-			Assert.AreEqual (0, buque.PartesSanas);
+			Assert.AreEqual (4, buque.PosicionesDePartesDestruidas.Count());
+			Assert.AreEqual (0, buque.PosicionesDePartesSanas.Count());
 		}
 
 		[Test]
@@ -42,8 +46,8 @@ namespace navalgo.model.test
 			buque.DaniarConMina (new[] { posicion });
 
 			Assert.IsTrue (buque.Destruida);
-			Assert.AreEqual (4, buque.PartesDestruidas);
-			Assert.AreEqual (0, buque.PartesSanas);
+			Assert.AreEqual (4, buque.PosicionesDePartesDestruidas.Count());
+			Assert.AreEqual (0, buque.PosicionesDePartesSanas.Count());
 		}
 	}
 }

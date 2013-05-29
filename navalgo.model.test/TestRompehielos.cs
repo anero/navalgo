@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+using System.Linq;
 
 namespace navalgo.model.test
 {
@@ -13,11 +14,13 @@ namespace navalgo.model.test
 			var rompehielos = new Rompehielos (posicion, Direccion.NorOeste);
 
 			Assert.AreEqual (3, rompehielos.Tamanio);
-			Assert.AreEqual (posicion, rompehielos.Posicion);
+			Assert.IsTrue (rompehielos.PosicionesOcupadas.Any(p => p.Equals(new Posicion('e', 5))));
+			Assert.IsTrue (rompehielos.PosicionesOcupadas.Any(p => p.Equals(new Posicion('d', 4))));
+			Assert.IsTrue (rompehielos.PosicionesOcupadas.Any(p => p.Equals(new Posicion('c', 3))));
 			Assert.AreEqual (Direccion.NorOeste, rompehielos.Direccion);
 			Assert.IsFalse (rompehielos.Destruida);
-			Assert.AreEqual (3, rompehielos.PartesSanas);
-			Assert.AreEqual (0, rompehielos.PartesDestruidas);
+			Assert.AreEqual (3, rompehielos.PosicionesDePartesSanas.Count ());
+			Assert.AreEqual (0, rompehielos.PosicionesDePartesDestruidas.Count ());
 		}
 	}
 }
