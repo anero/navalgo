@@ -51,6 +51,11 @@ namespace navalgo.model.test
 			{
 				throw new NotImplementedException ();
 			}
+
+			public void AvanzarPosicion ()
+			{
+				throw new NotImplementedException ();
+			}
 		}
 	}
 }

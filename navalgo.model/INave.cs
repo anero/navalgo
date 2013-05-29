@@ -12,6 +12,8 @@ namespace navalgo.model
 		void DaniarConDisparoConvencional(Posicion posicionImpactada);
 
 		void DaniarConMina(IEnumerable<Posicion> posicionesImpactadas);
+
+		void AvanzarPosicion();
 	}
 }
 

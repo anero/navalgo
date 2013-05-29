@@ -52,6 +52,29 @@ namespace navalgo.model.test
 
 			parte.RecibirImpacto ();
 		}
+
+		[Test]
+		public void DeberiaActualizarLaPosicion()
+		{
+			var posicionInicial = new Posicion ('a', 1);
+			var parte = new Parte (posicionInicial);
+
+			Assert.AreEqual (posicionInicial, parte.Posicion);
+
+			var posicionNueva = new Posicion ('z', 100);
+			parte.ActualizarPosicion(posicionNueva);
+
+			Assert.AreEqual (posicionNueva, parte.Posicion);
+		}
+
+		[Test]
+		[ExpectedException(typeof(ArgumentNullException))]
+		public void DeberiaLanzarExcepcionSiNuevaPosicionEsNullAlActualizarPosicion()
+		{
+			var parte = new Parte (new Posicion ('a', 1));
+
+			parte.ActualizarPosicion(null);
+		}
 	}
 }
 

@@ -16,8 +16,12 @@ namespace navalgo.model
 		}
 
 		public Posicion Posicion {
-			get;
-			private set;
+			get 
+			{
+				IParte parteInicial = this.Partes.FirstOrDefault (p => !p.Destruida());
+
+				return parteInicial != null ? parteInicial.Posicion : null;
+			}
 		}
 
 		public Direccion Direccion {
@@ -55,10 +59,9 @@ namespace navalgo.model
 				throw new ArgumentNullException ("posicion");
 			}
 
-			this.Posicion = posicion;
 			this.Direccion = direccion;
 
-			this.CrearPartes (tamanio, tipoDeParte);
+			this.CrearPartes (tamanio, posicion, tipoDeParte);
 		}
 
 		public virtual void DaniarConDisparoConvencional(Posicion posicionImpactada)
@@ -69,6 +72,14 @@ namespace navalgo.model
 		public virtual void DaniarConMina(IEnumerable<Posicion> posicionesImpactadas)
 		{
 			this.DestruirParte (posicionesImpactadas);
+		}
+
+		public void AvanzarPosicion()
+		{
+			foreach (IParte parte in this.Partes) 
+			{
+				parte.ActualizarPosicion (parte.Posicion.ObtenerSiguientePosicion(this.Direccion));
+			}
 		}
 
 		private void DestruirParte(IEnumerable<Posicion> posicionesImpactadas)
@@ -86,11 +97,11 @@ namespace navalgo.model
 			}
 		}
 
-		void CrearPartes (int tamanio, Type tipoDeParte)
+		private void CrearPartes (int tamanio, Posicion posicionInicial, Type tipoDeParte)
 		{
 			var partesCreadas = new List<IParte>();
 
-			Posicion posicionParaParteCreada = this.Posicion;
+			Posicion posicionParaParteCreada = posicionInicial;
 
 			try
 			{

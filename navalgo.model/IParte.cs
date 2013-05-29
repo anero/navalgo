@@ -9,6 +9,8 @@ namespace navalgo.model
 		bool Destruida();
 
 		void RecibirImpacto ();
+
+		void ActualizarPosicion(Posicion nuevaPosicion);
 	}
 }
 

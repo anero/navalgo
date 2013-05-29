@@ -193,6 +193,38 @@ namespace navalgo.model.test
 			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 5))));
 		}
 
+		[Test]
+		public void DeberiaAvanzarUnaPosicionHaciaElFrente()
+		{
+			var mockNave = new MockNave (3, new Posicion ('d', 1), Direccion.Este);
+
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 1))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('e', 1))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('f', 1))));
+
+			mockNave.AvanzarPosicion ();
+
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('e', 1))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('f', 1))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('g', 1))));
+		}
+
+		[Test]
+		public void DeberiaAvanzarUnaPosicionEnDiagonalHaciaElFrente()
+		{
+			var mockNave = new MockNave (3, new Posicion ('d', 1), Direccion.SurEste);
+
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 1))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('e', 2))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('f', 3))));
+
+			mockNave.AvanzarPosicion ();
+
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('e', 2))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('f', 3))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('g', 4))));
+		}
+
 		class MockNave : Nave
 		{
 			public MockNave(int tamanio, Posicion posicion, Direccion direccion)
@@ -232,6 +264,11 @@ namespace navalgo.model.test
 			}
 
 			public void RecibirImpacto ()
+			{
+				throw new NotImplementedException ();
+			}
+
+			public void ActualizarPosicion (Posicion nuevaPosicion)
 			{
 				throw new NotImplementedException ();
 			}

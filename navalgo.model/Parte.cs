@@ -34,6 +34,15 @@ namespace navalgo.model
 		{
 			return this.destruida;
 		}
+
+		public void ActualizarPosicion(Posicion nuevaPosicion)
+		{
+			if (nuevaPosicion == null) 
+			{
+				throw new ArgumentNullException ("nuevaPosicion");
+			}
+			this.Posicion = nuevaPosicion;
+		}
 	}
 }
 
