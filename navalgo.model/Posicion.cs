@@ -17,9 +17,7 @@ namespace navalgo.model
 		public Posicion (char columna, int fila)
 		{
 			columna = Char.ToLower (columna);
-			if (columna < 'a' || columna > 'z') {
-				throw new ColumnaInvalidaException (columna);
-			}
+			this.ValidarColumna (columna);
 
 			if (fila < 0) {
 				throw new FilaInvalidaException (fila);

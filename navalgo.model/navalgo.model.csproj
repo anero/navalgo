@@ -98,5 +98,7 @@
     <Compile Include="ParteDobleDuracion.cs" />
     <Compile Include="IParte.cs" />
     <Compile Include="Excepciones\TamanioInvalidoDeNaveException.cs" />
+    <Compile Include="AreaDePosicionesValidas.cs" />
+    <Compile Include="Excepciones\CoordenadasInvalidasParaAreaDePosicionesValidasException.cs" />
   </ItemGroup>
 </Project>
