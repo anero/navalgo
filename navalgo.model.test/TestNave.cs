@@ -33,7 +33,7 @@ namespace navalgo.model.test
 		[Test]
 		public void DeberiaCrearPartesAlConstruir()
 		{
-			new MockNave (3, new Posicion ('a', 1), Direccion.Este, typeof(MockParte));
+			new MockNave (3, new Posicion ('a', 1), Direccion.Este, typeof(MockParte), TestHelper.AreaDePosicionesValidasDefault);
 		
 			Assert.AreEqual(3, MockParte.InstanciasConstruidas.Count);
 			Assert.IsTrue(MockParte.InstanciasConstruidas.Any(p => p.Posicion.Equals(new Posicion('a', 1))));
@@ -218,50 +218,26 @@ namespace navalgo.model.test
 		}
 
 		[Test]
-		public void DeberiaRevertirDireccion()
+		public void DeberiaRevertirDireccionHorizontalAlIntentarAvanzarPasandoUltimaPosicion()
 		{
-			var mockNave = new MockNave (3, new Posicion ('d', 5), Direccion.Norte);
-		
-			Assert.AreEqual (Direccion.Norte, mockNave.Direccion);
-
-			mockNave.RevertirDireccion ();
-
-			Assert.AreEqual (Direccion.Sur, mockNave.Direccion);
-		}
-
-		[Test]
-		public void DeberiaRevertirDireccionYAvanzarHaciaLaNuevaDireccion()
-		{
-			var mockNave = new MockNave (3, new Posicion ('d', 5), Direccion.Norte);
-
-			Assert.AreEqual (Direccion.Norte, mockNave.Direccion);
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 5))));
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 4))));
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 3))));
-
-			mockNave.RevertirDireccion ();
-
-			Assert.AreEqual (Direccion.Sur, mockNave.Direccion);
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 5))));
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 4))));
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 3))));
+			var mockNave = new MockNave (3, new Posicion ('h', 4), Direccion.Este);
 
 			mockNave.AvanzarPosicion ();
 
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 6))));
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 5))));
-			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 4))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('g', 4))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('h', 4))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('i', 4))));
 		}
 
 		class MockNave : Nave
 		{
 			public MockNave(int tamanio, Posicion posicion, Direccion direccion)
-				: base(tamanio, posicion, direccion, typeof(Parte))
+				: base(tamanio, posicion, direccion, typeof(Parte), TestHelper.AreaDePosicionesValidasDefault)
 			{
 			}
 
-			public MockNave(int tamanio, Posicion posicion, Direccion direccion, Type tipoDeParte)
-				: base(tamanio, posicion, direccion, tipoDeParte)
+			public MockNave(int tamanio, Posicion posicion, Direccion direccion, Type tipoDeParte, AreaDePosicionesValidas areaDePosicionesValidas)
+				: base(tamanio, posicion, direccion, tipoDeParte, areaDePosicionesValidas)
 			{
 			}
 		}

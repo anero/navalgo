@@ -61,11 +61,6 @@ namespace navalgo.model.test
 			{
 				throw new NotImplementedException ();
 			}
-
-			public void RevertirDireccion ()
-			{
-				throw new NotImplementedException ();
-			}
 		}
 	}
 }

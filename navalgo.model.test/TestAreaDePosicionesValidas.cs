@@ -159,7 +159,7 @@ namespace navalgo.model.test
 				verticeSurOeste: new Posicion ('a', 10),
 				verticeSurEste: new Posicion ('j', 10));
 
-			Assert.IsFalse (areaDePosicionesValidas.PosicionEsValida(new Posicion('h', 5)));
+			Assert.IsFalse (areaDePosicionesValidas.PosicionEsValida(new Posicion('k', 5)));
 		}
 	}
 }

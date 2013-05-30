@@ -49,6 +49,7 @@
     <Compile Include="TestParteDobleDuracion.cs" />
     <Compile Include="TestDireccion.cs" />
     <Compile Include="TestAreaDePosicionesValidas.cs" />
+    <Compile Include="TestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\navalgo.model\navalgo.model.csproj">

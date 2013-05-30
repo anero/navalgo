@@ -14,8 +14,6 @@ namespace navalgo.model
 		void DaniarConMina(IEnumerable<Posicion> posicionesImpactadas);
 
 		void AvanzarPosicion();
-
-		void RevertirDireccion ();
 	}
 }
 

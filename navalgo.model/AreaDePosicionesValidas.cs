@@ -22,8 +22,8 @@ namespace navalgo.model
 		private void CrearRectangulo(Posicion verticeNorOeste, Posicion verticeNorEste, Posicion verticeSurOeste, Posicion verticeSurEste)
 		{
 			Point origen = this.ConvertirPosicionAPoint (verticeNorOeste);
-			int ancho = (int)(verticeNorEste.Columna - verticeNorOeste.Columna);
-			int alto = verticeSurOeste.Fila - verticeNorOeste.Fila;
+			int ancho = (int)(verticeNorEste.Columna - verticeNorOeste.Columna) + 1;
+			int alto = verticeSurOeste.Fila - verticeNorOeste.Fila + 1;
 
 			this.rectangulo = new Rectangle (origen, new Size(ancho, alto));
 		}

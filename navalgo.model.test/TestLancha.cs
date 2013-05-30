@@ -11,7 +11,7 @@ namespace navalgo.model.test
 		public void DeberiaInicializarCorrectamenteLosAtributos ()
 		{
 			var posicion = new Posicion ('e', 5);
-			var lancha = new Lancha (posicion, Direccion.Norte);
+			var lancha = new Lancha (posicion, Direccion.Norte, TestHelper.AreaDePosicionesValidasDefault);
 
 			Assert.AreEqual (2, lancha.Tamanio);
 			Assert.IsTrue (lancha.PosicionesOcupadas.Any(p => p.Equals(new Posicion('e', 5))));
@@ -26,7 +26,7 @@ namespace navalgo.model.test
 		public void DosDisparosDeCualquierTipoDeberianDestruirLaLancha()
 		{
 			var posicion = new Posicion ('e', 5);
-			var lancha = new Lancha (posicion, Direccion.Norte);
+			var lancha = new Lancha (posicion, Direccion.Norte, TestHelper.AreaDePosicionesValidasDefault);
 
 			Assert.AreEqual (2, lancha.PosicionesDePartesSanas.Count());
 			Assert.AreEqual (0, lancha.PosicionesDePartesDestruidas.Count());

@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 
 namespace navalgo.model
 {
 	public abstract class Nave : INave
 	{
+		private AreaDePosicionesValidas areaDePosicionesValidas;
+
 		protected IEnumerable<IParte> Partes {
 			get;
 			private set;
@@ -40,7 +43,7 @@ namespace navalgo.model
 			}
 		}
 
-		protected Nave(int tamanio, Posicion posicion, Direccion direccion, Type tipoDeParte)
+		protected Nave(int tamanio, Posicion posicion, Direccion direccion, Type tipoDeParte, AreaDePosicionesValidas areaDePosicionesValidas)
 		{
 			if (tamanio <= 0) {
 				throw new TamanioInvalidoDeNaveException (tamanio);
@@ -50,6 +53,7 @@ namespace navalgo.model
 				throw new ArgumentNullException ("posicion");
 			}
 
+			this.areaDePosicionesValidas = areaDePosicionesValidas;
 			this.Direccion = direccion;
 
 			this.CrearPartes (tamanio, posicion, tipoDeParte);
@@ -67,16 +71,11 @@ namespace navalgo.model
 
 		public void AvanzarPosicion()
 		{
-			foreach (IParte parte in this.Partes) 
+			if (!this.IntentarAvanzar ()) 
 			{
-				parte.ActualizarPosicion (parte.Posicion.ObtenerSiguientePosicion(this.Direccion));
+				this.Direccion = this.Direccion.DireccionOpuesta ();
+				Debug.Assert(this.IntentarAvanzar ());
 			}
-		}
-
-		public void RevertirDireccion ()
-		{
-			this.Direccion = this.Direccion.DireccionOpuesta();
-			this.InvertirPartes();
 		}
 
 		private void DestruirParte(IEnumerable<Posicion> posicionesImpactadas)
@@ -129,6 +128,38 @@ namespace navalgo.model
 				parteAtras.ActualizarPosicion (parteFrente.Posicion);
 				parteFrente.ActualizarPosicion (posicionAtras);
 			}
+		}
+
+		private bool IntentarAvanzar()
+		{
+			var diccionarioActualizacionDePosicionesDePartes = new Dictionary<IParte, Posicion> ();
+
+			try
+			{
+				foreach (IParte parte in this.Partes) 
+				{
+					Posicion posicionSiguiente = parte.Posicion.ObtenerSiguientePosicion(this.Direccion);
+					if (this.areaDePosicionesValidas.PosicionEsValida(posicionSiguiente))
+					{
+						diccionarioActualizacionDePosicionesDePartes.Add (parte, posicionSiguiente);
+					}
+					else
+					{
+						return false;
+					}
+				}
+			}
+			catch(PosicionInvalidaException) 
+			{
+				return false;
+			}
+
+			foreach (IParte parteAActualizar in diccionarioActualizacionDePosicionesDePartes.Keys) 
+			{
+				parteAActualizar.ActualizarPosicion (diccionarioActualizacionDePosicionesDePartes[parteAActualizar]);
+			}
+
+			return true;
 		}
 	}
 }

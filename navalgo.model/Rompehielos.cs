@@ -6,8 +6,8 @@ namespace navalgo.model
 	{
 		private const int TamanioInicial = 3;
 
-		public Rompehielos (Posicion posicion, Direccion direccion)
-			: base(TamanioInicial, posicion, direccion, typeof(ParteDobleDuracion))
+		public Rompehielos (Posicion posicion, Direccion direccion, AreaDePosicionesValidas areaDePosicionesValidas)
+			: base(TamanioInicial, posicion, direccion, typeof(ParteDobleDuracion), areaDePosicionesValidas)
 		{
 		}
 	}

@@ -11,7 +11,7 @@ namespace navalgo.model.test
 		public void DeberiaCrearLasPartesAlInicializar ()
 		{
 			var posicion = new Posicion ('e', 5);
-			var rompehielos = new Rompehielos (posicion, Direccion.NorOeste);
+			var rompehielos = new Rompehielos (posicion, Direccion.NorOeste, TestHelper.AreaDePosicionesValidasDefault);
 
 			Assert.AreEqual (3, rompehielos.Tamanio);
 			Assert.IsTrue (rompehielos.PosicionesOcupadas.Any(p => p.Equals(new Posicion('e', 5))));

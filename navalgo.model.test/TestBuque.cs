@@ -11,7 +11,7 @@ namespace navalgo.model.test
 		public void DeberiaInicializarCorrectamenteLosAtributos ()
 		{
 			var posicion = new Posicion ('e', 5);
-			var buque = new Buque (posicion, Direccion.Oeste);
+			var buque = new Buque (posicion, Direccion.Oeste, TestHelper.AreaDePosicionesValidasDefault);
 
 			Assert.AreEqual (4, buque.Tamanio);
 			Assert.IsTrue (buque.PosicionesOcupadas.Any(p => p.Equals(new Posicion('e', 5))));
@@ -28,7 +28,7 @@ namespace navalgo.model.test
 		public void UnDisparoConvencionalDeberiaDestruirBuque()
 		{
 			var posicion = new Posicion ('e', 5);
-			var buque = new Buque (posicion, Direccion.Norte);
+			var buque = new Buque (posicion, Direccion.Norte, TestHelper.AreaDePosicionesValidasDefault);
 
 			buque.DaniarConDisparoConvencional (posicion);
 
@@ -41,7 +41,7 @@ namespace navalgo.model.test
 		public void UnaMinaDeberiaDestruirBuque()
 		{
 			var posicion = new Posicion ('e', 5);
-			var buque = new Buque (posicion, Direccion.Norte);
+			var buque = new Buque (posicion, Direccion.Norte, TestHelper.AreaDePosicionesValidasDefault);
 
 			buque.DaniarConMina (new[] { posicion });
 
