@@ -11,6 +11,7 @@ namespace navalgo.model
 
 		public override void ImpactarNave(INave nave)
 		{
+			nave.DaniarConMina (new[] { this.PosicionObjetivo });
 		}
 	}
 }
