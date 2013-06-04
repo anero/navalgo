@@ -50,6 +50,7 @@
     <Compile Include="TestAreaDePosicionesValidas.cs" />
     <Compile Include="TestHelper.cs" />
     <Compile Include="TestMinaPorContacto.cs" />
+    <Compile Include="TestMinaConRetardo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\navalgo.model\navalgo.model.csproj">

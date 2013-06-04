@@ -14,6 +14,11 @@ namespace navalgo.model
 		{
 			nave.DaniarConDisparoConvencional (this.PosicionObjetivo);
 		}
+
+		public override void DecrementarVidaUtil ()
+		{
+			this.VidaUtilRestante = 0;
+		}
 	}
 }
 

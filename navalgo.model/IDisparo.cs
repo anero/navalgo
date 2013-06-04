@@ -6,7 +6,13 @@ namespace navalgo.model
 	{
 		Posicion PosicionObjetivo { get; }
 
+		int VidaUtilRestante { get; }
+
+		bool Destruida { get; }
+
 		void ImpactarNave(INave nave);
+
+		void DecrementarVidaUtil ();
 	}
 }
 

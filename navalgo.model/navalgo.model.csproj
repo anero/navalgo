@@ -103,5 +103,7 @@
     <Compile Include="Tablero.cs" />
     <Compile Include="Excepciones\NaveYaEstaEnTableroException.cs" />
     <Compile Include="Excepciones\PosicionFueraDeAreaDePosicionesValidasException.cs" />
+    <Compile Include="MinaConRetardo.cs" />
+    <Compile Include="Excepciones\DisparoYaDestruidoException.cs" />
   </ItemGroup>
 </Project>
