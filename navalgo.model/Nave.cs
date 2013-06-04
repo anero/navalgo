@@ -104,7 +104,10 @@ namespace navalgo.model
 				for (int i=0; i < tamanio; i++) 
 				{
 					partesCreadas.Add((IParte)Activator.CreateInstance (tipoDeParte, posicionParaParteCreada));
-					posicionParaParteCreada = posicionParaParteCreada.ObtenerSiguientePosicion (this.Direccion);
+					if (i < tamanio - 1)
+					{
+						posicionParaParteCreada = posicionParaParteCreada.ObtenerSiguientePosicion (this.Direccion);
+					}
 				}
 
 				this.Partes = partesCreadas;

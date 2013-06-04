@@ -224,9 +224,46 @@ namespace navalgo.model.test
 
 			mockNave.AvanzarPosicion ();
 
+			Assert.AreEqual (Direccion.Oeste, mockNave.Direccion);
 			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('g', 4))));
 			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('h', 4))));
 			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('i', 4))));
+		}
+
+		[Test]
+		public void DeberiaRevertirDireccionVerticalAlIntentarAvanzarPasandoUltimaPosicion()
+		{
+			var mockNave = new MockNave (3, new Posicion ('c', 3), Direccion.Norte);
+
+			Assert.AreEqual (Direccion.Norte, mockNave.Direccion);
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('c', 1))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('c', 2))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('c', 3))));
+
+			mockNave.AvanzarPosicion ();
+
+			Assert.AreEqual (Direccion.Sur, mockNave.Direccion);
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('c', 2))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('c', 3))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('c', 4))));
+		}
+
+		[Test]
+		public void DeberiaRevertirDireccionDiagonalAlIntentarAvanzarPasandoUltimaPosicion()
+		{
+			var mockNave = new MockNave (3, new Posicion ('c', 3), Direccion.NorEste);
+
+			Assert.AreEqual (Direccion.NorEste, mockNave.Direccion);
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('e', 1))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 2))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('c', 3))));
+
+			mockNave.AvanzarPosicion ();
+
+			Assert.AreEqual (Direccion.SurOeste, mockNave.Direccion);
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('b', 4))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('c', 3))));
+			Assert.IsTrue (mockNave.PosicionesOcupadas.Any(po => po.Equals(new Posicion('d', 2))));
 		}
 
 		class MockNave : Nave
