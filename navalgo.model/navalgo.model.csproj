@@ -63,6 +63,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="MonoMac" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -74,7 +75,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Mono\MonoMac\v0.0\Mono.MonoMac.targets" />
   <ItemGroup>
-    <Compile Include="Casillero.cs" />
     <Compile Include="INave.cs" />
     <Compile Include="Excepciones\NaveInvalidaException.cs" />
     <Compile Include="Nave.cs" />
@@ -100,5 +100,8 @@
     <Compile Include="Excepciones\TamanioInvalidoDeNaveException.cs" />
     <Compile Include="AreaDePosicionesValidas.cs" />
     <Compile Include="Excepciones\CoordenadasInvalidasParaAreaDePosicionesValidasException.cs" />
+    <Compile Include="Tablero.cs" />
+    <Compile Include="Excepciones\NaveYaEstaEnTableroException.cs" />
+    <Compile Include="Excepciones\PosicionFueraDeAreaDePosicionesValidasException.cs" />
   </ItemGroup>
 </Project>
